@@ -1,4 +1,5 @@
 import { auth, db } from './firebase';
+import './common.css';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { setupNavbar } from './navbar';

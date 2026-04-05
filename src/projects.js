@@ -1,4 +1,5 @@
 import { db } from './firebase';
+import './common.css';
 import { collection, onSnapshot, query, where, doc, getDoc } from 'firebase/firestore';
 import { setupNavbar } from './navbar';
 import { checkAuthAndRedirect, handleFirestoreError } from './utils';
