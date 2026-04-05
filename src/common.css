@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Force build change */
 body {
   @apply bg-slate-900 text-white min-h-screen font-sans;
   background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920');
