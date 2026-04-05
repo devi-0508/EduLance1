@@ -31,7 +31,7 @@ export async function checkAuthAndRedirect() {
       unsubscribe();
       if (!user) {
         if (!window.location.pathname.includes('login') && !window.location.pathname.includes('register') && window.location.pathname !== '/') {
-          window.location.href = '/login.html';
+          window.location.href = './login.html';
         }
         resolve(null);
         return;
@@ -39,7 +39,7 @@ export async function checkAuthAndRedirect() {
 
       if (!user.emailVerified) {
         if (!window.location.pathname.includes('login')) {
-          window.location.href = '/login.html?error=verify-email';
+          window.location.href = './login.html?error=verify-email';
         }
         resolve(user);
         return;
@@ -60,7 +60,7 @@ export async function checkAuthAndRedirect() {
 
       if (!userData || (!userData.isVerified && !isBootstrapAdmin)) {
         if (!window.location.pathname.includes('login')) {
-          window.location.href = '/login.html?error=admin-approval';
+          window.location.href = './login.html?error=admin-approval';
         }
         resolve(user);
         return;

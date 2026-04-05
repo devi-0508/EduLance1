@@ -8,7 +8,7 @@ setupNavbar();
 async function init() {
   const authData = await checkAuthAndRedirect();
   if (!authData || authData.userData.role !== 'freelancer') {
-    window.location.href = '/';
+    window.location.href = './';
     return;
   }
 

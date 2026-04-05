@@ -8,7 +8,7 @@ setupNavbar();
 async function init() {
   const authData = await checkAuthAndRedirect();
   if (!authData || authData.userData.role !== 'admin') {
-    window.location.href = '/';
+    window.location.href = './';
     return;
   }
 

@@ -13,7 +13,7 @@ async function init() {
   const uid = urlParams.get('uid');
 
   if (!uid) {
-    window.location.href = '/';
+    window.location.href = './';
     return;
   }
 
