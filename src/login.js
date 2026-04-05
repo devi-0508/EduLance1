@@ -68,11 +68,11 @@ loginForm.addEventListener('submit', async (e) => {
 
     // Redirect based on role
     if (userData.role === 'freelancer') {
-      window.location.href = './freelancer_profile.html';
+      window.location.href = import.meta.env.BASE_URL + 'freelancer_profile.html';
     } else if (userData.role === 'client') {
-      window.location.href = './client_profile.html';
+      window.location.href = import.meta.env.BASE_URL + 'client_profile.html';
     } else if (userData.role === 'admin') {
-      window.location.href = './admin_dashboard.html';
+      window.location.href = import.meta.env.BASE_URL + 'admin_dashboard.html';
     }
   } catch (error) {
     console.error('Login error:', error);

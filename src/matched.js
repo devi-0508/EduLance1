@@ -45,7 +45,7 @@ async function loadFreelancerMatches(freelancerData) {
     matchList.innerHTML = `
       <div class="card text-center py-10">
         <p class="text-slate-400 mb-4">You haven't added any skills yet.</p>
-        <a href="./freelancer_profile.html" class="btn-primary inline-block">Add Skills Now</a>
+        <a href="${import.meta.env.BASE_URL}freelancer_profile.html" class="btn-primary inline-block">Add Skills Now</a>
       </div>
     `;
     return;
@@ -90,7 +90,7 @@ async function loadFreelancerMatches(freelancerData) {
         <p class="text-slate-400 text-sm mb-4">${m.description}</p>
         <div class="mb-4">
           <p class="text-xs text-slate-500 mb-1">Posted by:</p>
-          <a href="./public_profile.html?uid=${m.clientId}" class="text-sm text-blue-400 hover:underline client-name" data-uid="${m.clientId}">Loading client...</a>
+          <a href="${import.meta.env.BASE_URL}public_profile.html?uid=${m.clientId}" class="text-sm text-blue-400 hover:underline client-name" data-uid="${m.clientId}">Loading client...</a>
         </div>
         <div class="mb-4">
           <p class="text-xs text-slate-500 mb-2">Matched Skills:</p>
@@ -123,7 +123,7 @@ async function loadFreelancerMatches(freelancerData) {
             <span class="font-medium text-emerald-400 select-all">${clientData.email}</span>
           </div>
           <div class="flex justify-end items-center">
-            <a href="./public_profile.html?uid=${m.clientId}" class="text-xs text-blue-400 hover:underline">View Full Profile</a>
+            <a href="${import.meta.env.BASE_URL}public_profile.html?uid=${m.clientId}" class="text-xs text-blue-400 hover:underline">View Full Profile</a>
           </div>
         `;
         card.appendChild(contactDiv);
@@ -145,7 +145,7 @@ async function loadClientMatches(clientId) {
     matchList.innerHTML = `
       <div class="card text-center py-10">
         <p class="text-slate-400 mb-4">You haven't posted any open projects yet.</p>
-        <a href="./client_profile.html" class="btn-primary inline-block">Post a Project</a>
+        <a href="${import.meta.env.BASE_URL}client_profile.html" class="btn-primary inline-block">Post a Project</a>
       </div>
     `;
     return;
@@ -187,7 +187,7 @@ async function loadClientMatches(clientId) {
         ${matchedFreelancers.length > 0 ? matchedFreelancers.map(f => `
           <div class="card bg-slate-800/40">
             <div class="flex justify-between items-start mb-2">
-              <a href="./public_profile.html?uid=${f.id}" class="font-bold text-blue-400 hover:underline">${f.name}</a>
+              <a href="${import.meta.env.BASE_URL}public_profile.html?uid=${f.id}" class="font-bold text-blue-400 hover:underline">${f.name}</a>
               <span class="text-xs text-emerald-400">${Math.round(f.matchPercentage)}% Match</span>
             </div>
             <p class="text-xs text-slate-400 mb-4">${f.email}</p>

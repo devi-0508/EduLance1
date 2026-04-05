@@ -62,7 +62,7 @@ async function init() {
         <p class="text-slate-400 text-sm mb-4 line-clamp-3">${p.description}</p>
         <div class="mb-4">
           <p class="text-xs text-slate-500 mb-1">Posted by:</p>
-          <a href="./public_profile.html?uid=${p.clientId}" class="text-sm text-blue-400 hover:underline client-name" data-uid="${p.clientId}">Loading client...</a>
+          <a href="${import.meta.env.BASE_URL}public_profile.html?uid=${p.clientId}" class="text-sm text-blue-400 hover:underline client-name" data-uid="${p.clientId}">Loading client...</a>
         </div>
         <div class="flex flex-wrap gap-2 mb-6">
           ${p.skills.map(s => `<span class="text-xs bg-slate-700 px-2 py-1 rounded">${s}</span>`).join('')}
@@ -88,7 +88,7 @@ async function init() {
             <span class="font-medium text-emerald-400 select-all">${clientData.email}</span>
           </div>
           <div class="flex justify-end items-center">
-            <a href="./public_profile.html?uid=${p.clientId}" class="text-xs text-blue-400 hover:underline">View Full Profile</a>
+            <a href="${import.meta.env.BASE_URL}public_profile.html?uid=${p.clientId}" class="text-xs text-blue-400 hover:underline">View Full Profile</a>
           </div>
         `;
         card.appendChild(contactDiv);
