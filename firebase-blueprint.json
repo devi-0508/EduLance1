@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the platform (Freelancer, Client, or Admin).",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the user." },
+        "email": { "type": "string", "format": "email", "description": "Email address." },
+        "role": { "type": "string", "enum": ["freelancer", "client", "admin"], "description": "User role." },
+        "resumeLink": { "type": "string", "description": "Optional link to resume." },
+        "verificationFolderLink": { "type": "string", "description": "Required link for verification." },
+        "portfolioLink": { "type": "string", "description": "Optional link to portfolio or GitHub." },
+        "skills": { "type": "array", "items": { "type": "string" }, "description": "List of skills for freelancers." },
+        "averageRating": { "type": "number", "description": "Average rating from clients." },
+        "ratingCount": { "type": "number", "description": "Number of ratings received." },
+        "isVerified": { "type": "boolean", "description": "Admin approval status." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Account creation timestamp." }
+      },
+      "required": ["name", "email", "role", "verificationFolderLink", "isVerified", "createdAt"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "A project posted by a client.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Project title." },
+        "description": { "type": "string", "description": "Project description." },
+        "skills": { "type": "array", "items": { "type": "string" }, "description": "Required skills." },
+        "budget": { "type": "number", "description": "Project budget." },
+        "status": { "type": "string", "enum": ["open", "in-progress", "completed"], "description": "Project status." },
+        "clientId": { "type": "string", "description": "UID of the client who posted the project." },
+        "freelancerId": { "type": "string", "description": "UID of the assigned freelancer." },
+        "rating": { "type": "number", "description": "Rating given by client (1-5)." },
+        "review": { "type": "string", "description": "Review text from client." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Project creation timestamp." }
+      },
+      "required": ["title", "description", "skills", "budget", "status", "clientId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": { "schema": "User", "description": "User profiles." },
+    "/projects/{projectId}": { "schema": "Project", "description": "Project postings." }
+  }
+}

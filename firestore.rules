@@ -1,0 +1,129 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: users
+// Document ID: userId (Firebase Auth UID)
+// Fields:
+//   - name: string (required)
+//   - email: string (required, email format)
+//   - role: string (required, freelancer/client/admin)
+//   - resumeLink: string (optional)
+//   - verificationFolderLink: string (required)
+//   - skills: list of strings (optional)
+//   - isVerified: bool (required)
+//   - createdAt: timestamp (required)
+//
+// Collection: projects
+// Document ID: auto-generated
+// Fields:
+//   - title: string (required)
+//   - description: string (required)
+//   - skills: list of strings (required)
+//   - budget: number (required)
+//   - status: string (required, open/in-progress/completed)
+//   - clientId: string (required, UID of the creator)
+//   - createdAt: timestamp (required)
+//
+// ===============================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "devipbiju@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['name', 'email', 'role', 'verificationFolderLink', 'isVerified', 'createdAt']) &&
+             data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
+             data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
+             data.role in ['freelancer', 'client', 'admin'] &&
+             data.verificationFolderLink is string && data.verificationFolderLink.size() > 0 &&
+             (!('portfolioLink' in data) || data.portfolioLink == null || (data.portfolioLink is string && data.portfolioLink.size() < 500)) &&
+             (!('averageRating' in data) || data.averageRating == null || data.averageRating is number) &&
+             (!('ratingCount' in data) || data.ratingCount == null || data.ratingCount is number) &&
+             data.isVerified is bool &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidProject(data) {
+      return data.keys().hasAll(['title', 'description', 'skills', 'budget', 'status', 'clientId', 'createdAt']) &&
+             data.title is string && data.title.size() > 0 && data.title.size() < 200 &&
+             data.description is string && data.description.size() > 0 && data.description.size() < 2000 &&
+             data.skills is list &&
+             data.budget is number && data.budget >= 0 &&
+             data.status in ['open', 'in-progress', 'completed'] &&
+             data.clientId == request.auth.uid &&
+             (!('freelancerId' in data) || data.freelancerId == null || data.freelancerId is string) &&
+             (!('rating' in data) || data.rating == null || (data.rating is number && data.rating >= 1 && data.rating <= 5)) &&
+             (!('review' in data) || data.review == null || (data.review is string && data.review.size() < 1000)) &&
+             data.createdAt is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      // Authenticated users can read profiles to contact each other.
+      allow read: if isAuthenticated();
+      
+      // Anyone can create a profile during registration, but role must be freelancer/client.
+      // Admin role cannot be self-assigned.
+      allow create: if isAuthenticated() && 
+                      isValidUser(request.resource.data) && 
+                      request.resource.data.role in ['freelancer', 'client'] &&
+                      request.resource.data.isVerified == false &&
+                      request.resource.data.email == request.auth.token.email &&
+                      isOwner(userId);
+
+      // Users can update their own profile (except role and isVerified).
+      // Admins can update any profile (e.g., to verify).
+      // Clients can update freelancer averageRating/ratingCount (this is a shortcut for this demo)
+      allow update: if isAdmin() || 
+                      (isOwner(userId) && 
+                       isValidUser(request.resource.data) &&
+                       request.resource.data.role == resource.data.role &&
+                       request.resource.data.isVerified == resource.data.isVerified) ||
+                      (isAuthenticated() && 
+                       get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'client' &&
+                       resource.data.role == 'freelancer' &&
+                       request.resource.data.diff(resource.data).affectedKeys().hasOnly(['averageRating', 'ratingCount']));
+    }
+
+    match /projects/{projectId} {
+      // Authenticated users can read projects.
+      allow read: if isAuthenticated();
+      
+      // Only verified clients can create projects.
+      allow create: if isAuthenticated() && 
+                      get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'client' &&
+                      get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isVerified == true &&
+                      isValidProject(request.resource.data);
+
+      // Only the client who created the project can update or delete it.
+      allow update: if isAuthenticated() && 
+                      resource.data.clientId == request.auth.uid &&
+                      isValidProject(request.resource.data);
+                      
+      allow delete: if isAuthenticated() && 
+                      resource.data.clientId == request.auth.uid;
+    }
+  }
+}

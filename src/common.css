@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-slate-900 text-white min-h-screen font-sans;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.card {
+  @apply bg-slate-800/80 backdrop-blur-md p-6 rounded-xl shadow-2xl border border-slate-700 transition-all hover:scale-[1.02];
+}
+
+.btn-primary {
+  @apply bg-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50;
+}
+
+.input-field {
+  @apply w-full bg-slate-700 border border-slate-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}

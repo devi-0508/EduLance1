@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelancer Profile - EduLance</title>
+  <link rel="stylesheet" href="/src/common.css">
+</head>
+<body>
+  <nav id="navbar" class="bg-slate-800/50 backdrop-blur-md sticky top-0 z-50"></nav>
+  
+  <main class="container mx-auto px-4 py-10">
+    <div id="error-message" class="hidden bg-red-500/20 border border-red-500 text-red-200 p-3 rounded-lg mb-4 text-sm"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Profile Info -->
+      <div class="lg:col-span-1">
+        <div class="card h-full">
+          <h2 class="text-3xl font-bold mb-1" id="profileName">Loading...</h2>
+          <div id="ratingDisplay" class="flex items-center space-x-2 mb-4 hidden">
+            <span class="text-yellow-400 text-xl">★</span>
+            <span id="averageRating" class="font-bold">0.0</span>
+            <span id="ratingCount" class="text-slate-500 text-xs">(0 reviews)</span>
+          </div>
+          <p class="text-slate-400 mb-6" id="profileEmail"></p>
+          
+          <div class="space-y-4">
+            <div id="resumeSection">
+              <p class="text-sm font-medium text-slate-500 mb-1">Resume Link</p>
+              <a href="#" id="resumeLink" target="_blank" class="text-blue-400 hover:underline">View Resume</a>
+              <p id="noResume" class="text-slate-500 italic hidden">Not provided</p>
+            </div>
+
+            <div id="portfolioSection" class="mt-4">
+              <p class="text-sm font-medium text-slate-500 mb-1">Portfolio / GitHub Link</p>
+              <a href="#" id="portfolioLinkDisplay" target="_blank" class="text-emerald-400 hover:underline">View Portfolio</a>
+              <p id="noPortfolio" class="text-slate-500 italic hidden">Not provided</p>
+              
+              <div class="mt-2 flex space-x-2">
+                <input type="url" id="portfolioEditInput" class="input-field py-1 text-xs" placeholder="Update link">
+                <button id="updatePortfolioBtn" class="bg-blue-600 px-2 py-1 rounded text-[10px] hover:bg-blue-700">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Management -->
+      <div class="lg:col-span-2">
+        <div class="card h-full">
+          <h3 class="text-2xl font-bold mb-6">Skills Management</h3>
+          
+          <div class="flex space-x-2 mb-8">
+            <input type="text" id="skillInput" class="input-field" placeholder="Add a new skill (e.g., Python, UI/UX)">
+            <button id="addSkillBtn" class="btn-primary">Add Skill</button>
+          </div>
+
+          <div class="mb-8">
+            <p class="text-sm font-medium text-slate-500 mb-3">Your Skills</p>
+            <div id="skillsList" class="flex flex-wrap gap-2">
+              <!-- Skills will be injected here -->
+              <p class="text-slate-500 italic">No skills added yet.</p>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-sm font-medium text-slate-500 mb-3">Quick Add Skills</p>
+            <div class="flex flex-wrap gap-4">
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" value="Python" class="quick-skill w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500 focus:ring-blue-500">
+                <span>Python</span>
+              </label>
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" value="JavaScript" class="quick-skill w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500 focus:ring-blue-500">
+                <span>JavaScript</span>
+              </label>
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" value="UI/UX Design" class="quick-skill w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500 focus:ring-blue-500">
+                <span>UI/UX Design</span>
+              </label>
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" value="Content Writing" class="quick-skill w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500 focus:ring-blue-500">
+                <span>Content Writing</span>
+              </label>
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" value="Data Entry" class="quick-skill w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500 focus:ring-blue-500">
+                <span>Data Entry</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/freelancer.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Profile - EduLance</title>
+  <link rel="stylesheet" href="/src/common.css">
+</head>
+<body>
+  <nav id="navbar" class="bg-slate-800/50 backdrop-blur-md sticky top-0 z-50"></nav>
+  
+  <main class="container mx-auto px-4 py-10">
+    <div id="error-message" class="hidden bg-red-500/20 border border-red-500 text-red-200 p-3 rounded-lg mb-4 text-sm"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Post Project Form -->
+      <div class="lg:col-span-1">
+        <div class="card sticky top-24">
+          <h3 class="text-2xl font-bold mb-6">Post a New Project</h3>
+          <form id="projectForm" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Project Title</label>
+              <input type="text" id="title" class="input-field" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Description</label>
+              <textarea id="description" class="input-field h-32" required></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Required Skills (Comma separated)</label>
+              <input type="text" id="skills" class="input-field" placeholder="e.g., Python, React, Writing" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Budget ($)</label>
+              <input type="number" id="budget" class="input-field" required min="0">
+            </div>
+            <button type="submit" id="submitBtn" class="btn-primary w-full">Post Project</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Posted Projects List -->
+      <div class="lg:col-span-2">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold">Your Posted Projects</h3>
+          
+          <div class="flex space-x-2">
+            <select id="statusFilter" class="input-field w-auto py-1 px-3 text-sm">
+              <option value="all">All Status</option>
+              <option value="open">Open</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+            <div class="flex items-center space-x-2">
+              <input type="number" id="minBudget" class="input-field w-24 py-1 px-3 text-sm" placeholder="Min $">
+              <input type="number" id="maxBudget" class="input-field w-24 py-1 px-3 text-sm" placeholder="Max $">
+            </div>
+          </div>
+        </div>
+
+        <div id="projectsList" class="space-y-4">
+          <!-- Project cards will be injected here -->
+          <div class="text-center py-20 text-slate-400">Loading your projects...</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rating Modal -->
+  <div id="ratingModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md shadow-2xl">
+      <h3 class="text-xl font-bold mb-4">Rate Freelancer</h3>
+      <p id="ratingProjectTitle" class="text-slate-400 text-sm mb-4"></p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-2">Rating (1-5)</label>
+          <div class="flex space-x-2" id="starRating">
+            <button data-value="1" class="star-btn text-2xl text-slate-700 hover:text-yellow-400">★</button>
+            <button data-value="2" class="star-btn text-2xl text-slate-700 hover:text-yellow-400">★</button>
+            <button data-value="3" class="star-btn text-2xl text-slate-700 hover:text-yellow-400">★</button>
+            <button data-value="4" class="star-btn text-2xl text-slate-700 hover:text-yellow-400">★</button>
+            <button data-value="5" class="star-btn text-2xl text-slate-700 hover:text-yellow-400">★</button>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium mb-2">Review (Optional)</label>
+          <textarea id="reviewText" class="input-field min-h-[100px]" placeholder="Write a short review..."></textarea>
+        </div>
+        
+        <div class="flex space-x-3 pt-2">
+          <button id="cancelRatingBtn" class="flex-1 bg-slate-800 hover:bg-slate-700 py-2 rounded-lg font-medium transition-colors">Cancel</button>
+          <button id="submitRatingBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-500 py-2 rounded-lg font-medium transition-colors">Submit Rating</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/client.js"></script>
+</body>
+</html>

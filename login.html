@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - EduLance</title>
+  <link rel="stylesheet" href="/src/common.css">
+</head>
+<body>
+  <nav id="navbar" class="bg-slate-800/50 backdrop-blur-md sticky top-0 z-50"></nav>
+  
+  <main class="container mx-auto px-4 py-20 flex justify-center">
+    <div class="card max-w-md w-full">
+      <h2 class="text-3xl font-bold mb-6 text-center">Welcome Back</h2>
+      
+      <div id="error-message" class="hidden bg-red-500/20 border border-red-500 text-red-200 p-3 rounded-lg mb-4 text-sm"></div>
+      <div id="info-message" class="hidden bg-blue-500/20 border border-blue-500 text-blue-200 p-3 rounded-lg mb-4 text-sm"></div>
+
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Email Address</label>
+          <input type="email" id="email" class="input-field" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Password</label>
+          <input type="password" id="password" class="input-field" required>
+        </div>
+        <button type="submit" id="submitBtn" class="btn-primary w-full">Login</button>
+      </form>
+      
+      <p class="mt-6 text-center text-slate-400">
+        Don't have an account? <a href="/register.html" class="text-blue-400 hover:underline">Register here</a>
+      </p>
+    </div>
+  </main>
+
+  <script type="module" src="/src/login.js"></script>
+</body>
+</html>

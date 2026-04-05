@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Projects - EduLance</title>
+  <link rel="stylesheet" href="/src/common.css">
+</head>
+<body>
+  <nav id="navbar" class="bg-slate-800/50 backdrop-blur-md sticky top-0 z-50"></nav>
+  
+  <main class="container mx-auto px-4 py-10">
+    <div id="error-message" class="hidden bg-red-500/20 border border-red-500 text-red-200 p-3 rounded-lg mb-4 text-sm"></div>
+
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-3xl font-bold">Explore Projects</h2>
+      <div id="freelancerFilter" class="hidden">
+        <label class="flex items-center space-x-2 cursor-pointer">
+          <input type="checkbox" id="matchSkillsOnly" class="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-500 focus:ring-blue-500">
+          <span class="text-sm">Show only matched skills</span>
+        </label>
+      </div>
+    </div>
+
+    <div id="projectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="col-span-full text-center py-20 text-slate-400">Loading projects...</div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/projects.js"></script>
+</body>
+</html>

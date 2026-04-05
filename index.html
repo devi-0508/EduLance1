@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduLance - Student Freelancing Platform</title>
+  <link rel="stylesheet" href="/src/common.css">
+</head>
+<body>
+  <nav id="navbar" class="bg-slate-800/50 backdrop-blur-md sticky top-0 z-50"></nav>
+  
+  <main class="container mx-auto px-4 py-20 flex flex-col items-center text-center">
+    <h1 class="text-6xl font-extrabold mb-6 pb-2 bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+      Empowering Student Talent
+    </h1>
+    <p class="text-xl text-slate-300 max-w-2xl mb-10">
+      EduLance is the premier platform connecting skilled students with real-world projects. 
+      Whether you're a student looking to build your portfolio or a client seeking fresh talent, 
+      we've got you covered.
+    </p>
+    
+    <div class="flex space-x-4">
+      <a href="/register.html" class="btn-primary bg-emerald-600 hover:bg-emerald-700">Get Started</a>
+      <a href="/login.html" class="btn-primary">Login Now</a>
+    </div>
+
+    <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+      <div class="card">
+        <h3 class="text-2xl font-bold mb-4">For Freelancers</h3>
+        <p class="text-slate-400">Showcase your skills, build your portfolio, and earn while you learn.</p>
+      </div>
+      <div class="card">
+        <h3 class="text-2xl font-bold mb-4">For Clients</h3>
+        <p class="text-slate-400">Find talented students for your projects at competitive rates.</p>
+      </div>
+      <div class="card">
+        <h3 class="text-2xl font-bold mb-4">Verified & Secure</h3>
+        <p class="text-slate-400">Every user is verified by our admin team to ensure quality and trust.</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { setupNavbar } from '/src/navbar.js';
+    setupNavbar();
+  </script>
+</body>
+</html>

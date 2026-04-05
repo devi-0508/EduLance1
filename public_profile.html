@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - EduLance</title>
+  <link rel="stylesheet" href="/src/common.css">
+</head>
+<body>
+  <nav id="navbar" class="bg-slate-800/50 backdrop-blur-md sticky top-0 z-50"></nav>
+  
+  <main class="container mx-auto px-4 py-10">
+    <div id="loading" class="text-center py-20">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-emerald-500 mb-4"></div>
+      <p class="text-slate-400">Loading profile...</p>
+    </div>
+
+    <div id="profileContent" class="hidden">
+      <div class="max-w-4xl mx-auto">
+        <div class="card mb-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <h2 class="text-4xl font-bold mb-2" id="userName">User Name</h2>
+              <div class="flex items-center space-x-3 mb-4">
+                <span id="userRole" class="text-xs px-2 py-1 rounded-full font-bold uppercase tracking-wider">Role</span>
+                <span id="userVerified" class="text-xs px-2 py-1 rounded-full font-bold uppercase tracking-wider hidden">Verified</span>
+                <div id="userRating" class="flex items-center text-yellow-400 font-bold hidden">
+                  <span class="mr-1">★</span> <span id="avgRating">0.0</span>
+                  <span id="ratingCount" class="text-slate-500 text-xs font-normal ml-1">(0 reviews)</span>
+                </div>
+              </div>
+              <p class="text-slate-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span id="userEmail">email@example.com</span>
+              </p>
+            </div>
+            <div class="flex flex-col gap-3">
+              <a id="contactBtn" href="#" class="btn-primary text-center">Contact via Email</a>
+              <div id="freelancerLinks" class="flex gap-3 hidden">
+                <a id="resumeLink" href="#" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center">View Resume</a>
+                <a id="portfolioLink" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors text-center">Portfolio</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="freelancerDetails" class="hidden space-y-8">
+          <div class="card">
+            <h3 class="text-xl font-bold mb-4">Skills</h3>
+            <div id="skillsList" class="flex flex-wrap gap-2">
+              <p class="text-slate-500 italic">No skills listed.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="clientDetails" class="hidden space-y-8">
+          <div class="card">
+            <h3 class="text-xl font-bold mb-4">Recent Activity</h3>
+            <p class="text-slate-400">This user is a client on EduLance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/public_profile.js"></script>
+</body>
+</html>

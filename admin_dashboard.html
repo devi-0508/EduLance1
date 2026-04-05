@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - EduLance</title>
+  <link rel="stylesheet" href="/src/common.css">
+</head>
+<body>
+  <nav id="navbar" class="bg-slate-800/50 backdrop-blur-md sticky top-0 z-50"></nav>
+  
+  <main class="container mx-auto px-4 py-10">
+    <h2 class="text-3xl font-bold mb-8">Admin Dashboard - Pending Verifications</h2>
+    
+    <div id="error-message" class="hidden bg-red-500/20 border border-red-500 text-red-200 p-3 rounded-lg mb-4 text-sm"></div>
+
+    <div id="pendingUsers" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- User cards will be injected here -->
+      <div id="loading" class="col-span-full text-center py-20 text-slate-400">Loading pending users...</div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/admin.js"></script>
+</body>
+</html>
