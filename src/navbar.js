@@ -1,4 +1,5 @@
 import { auth, db } from './firebase';
+import './common.css';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
